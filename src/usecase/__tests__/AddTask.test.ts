@@ -12,6 +12,13 @@ describe('Add task', () => {
   
   it('should resolve void', async () => {
     await expect(usecase.execute({
+      content: 'Hello from 5AL1',
+      dueDate: '2020-01-01'
+    })).resolves.toBeUndefined();
+  })
+
+  it('should resolve void without due date', async () => {
+    await expect(usecase.execute({
       content: 'Hello from 5AL1'
     })).resolves.toBeUndefined();
   })

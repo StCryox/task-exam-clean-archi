@@ -1,4 +1,4 @@
 export interface AddTaskRequest {
   content: string;
-  date?: string;
+  dueDate?: string;
 }

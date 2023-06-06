@@ -1,3 +1,4 @@
+import uuid from 'uuid';
 import { State } from './State';
 
 export class Task {
@@ -18,4 +19,16 @@ export class Task {
     private _dueDate?: Date,
     private _closeDate?: Date,
   ) {}
+
+  static new(description: string, dueDate?: Date): Task {
+    return new Task(
+      uuid.v4(),
+      description,
+      State.TODO,
+      [],
+      new Date(),
+      undefined,
+      dueDate ? new Date(dueDate) : undefined
+    );
+  }
 }
