@@ -4,6 +4,7 @@ import { AddTaskUsecase, DeleteTaskUsecase, ListTaskUsecase, UpdateTaskUsecase }
 export function buildListCommand(usecase: ListTaskUsecase): Command {
 	const listCommand = new Command("list");
 	listCommand
+		.summary("List all tasks")
 		.action(async () => {
 			try {
 				console.log(await usecase());
@@ -17,9 +18,9 @@ export function buildListCommand(usecase: ListTaskUsecase): Command {
 }
 
 export function buildAddCommand(usecase: AddTaskUsecase): Command {
-	
 	const addCommand = new Command("add");
 	addCommand
+		.summary("Add a new task")
 		.requiredOption("-d, --description <description>", "Task description")
 		.option("-dd, --due-date <dueDate>", "Task due date")
 		.action(async (values) => {
@@ -35,9 +36,9 @@ export function buildAddCommand(usecase: AddTaskUsecase): Command {
 }
 
 export function buildUpdateCommand(usecase: UpdateTaskUsecase): Command {
-	
 	const updateCommand = new Command("update");
 	updateCommand
+		.summary("Update a task")
 		.argument("<id>", "Task id")
 		.option("-dd, --due-date <dueDate>", "Task due date")
 		.option("-s, --state <state>", "Task state")
@@ -56,9 +57,9 @@ export function buildUpdateCommand(usecase: UpdateTaskUsecase): Command {
 }
 
 export function buildRemoveCommand(usecase: DeleteTaskUsecase): Command {
-	
 	const removeCommand = new Command("remove");
 	removeCommand
+		.summary("remove a task")
 		.argument("<id>", "Task id")
 		.action(async (id) => {
 			try {

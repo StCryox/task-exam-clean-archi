@@ -1,9 +1,6 @@
 import { TaskRepo } from "../core/task";
-import { DeleteTaskRequest } from "../core/dtos";
-import { deleteTask } from "../core/usecases"
+import { DeleteTaskUsecase, deleteTask } from "../core/usecases"
 import { fakeTaskRepo } from "./fake-taks-repo";
-
-type DeleteTaskUsecase = ReturnType<typeof deleteTask>;
 
 describe('Delete Task', () => {
 	let taskRepo: TaskRepo;

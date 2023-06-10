@@ -23,10 +23,6 @@ export const deleteTask = (taskRepo: TaskRepo) => async (input: DeleteTaskReques
 	await taskRepo.remove(task);
 }
 
-export const findTask = (taskRepo: TaskRepo) => async (input: FindTaskRequest): Promise<Task> => {
-	return await _getTaskById(taskRepo, input.id);
-}
-
 export const listTasks = (taskRepo: TaskRepo) => async (): Promise<Task[]> => {
 	return await taskRepo.findAll();
 }
@@ -39,7 +35,6 @@ async function _getTaskById(taskRepo: TaskRepo, id: string): Promise<Task> {
 	return task;
 }
 
-export type FindTaskUsecase = ReturnType<typeof findTask>;
 export type ListTaskUsecase = ReturnType<typeof listTasks>;
 export type AddTaskUsecase = ReturnType<typeof addTask>;
 export type UpdateTaskUsecase = ReturnType<typeof updateTask>;

@@ -1,8 +1,6 @@
 import { TaskRepo } from "../core/task"
-import { updateTask } from "../core/usecases";
+import { UpdateTaskUsecase, updateTask } from "../core/usecases";
 import { fakeTaskRepo } from "./fake-taks-repo";
-
-type UpdateTaskUsecase = ReturnType<typeof updateTask>;
 
 describe('Update task', () => {
 	let taskRepo: TaskRepo;
@@ -12,7 +10,7 @@ describe('Update task', () => {
 
 	beforeEach(() => {
 		taskRepo = fakeTaskRepo();
-		usecase = updateTask(taskRepo);
+		usecase = updateTask(taskRepo, () => new Date('2020-01-01'));
 	})
 
 	it('should resolve void', async () => {

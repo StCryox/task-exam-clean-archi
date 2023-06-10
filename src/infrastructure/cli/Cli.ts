@@ -1,7 +1,7 @@
 
 import { Command } from "commander";
-import { buildAddCommand, buildListCommand, buildRemoveCommand, buildUpdateCommand } from "./commands";
 import figlet from "figlet";
+import { buildAddCommand, buildListCommand, buildRemoveCommand, buildUpdateCommand } from "./commands";
 import { AddTaskUsecase, DeleteTaskUsecase, ListTaskUsecase, UpdateTaskUsecase } from "../../core/usecases";
 
 export function cli(
