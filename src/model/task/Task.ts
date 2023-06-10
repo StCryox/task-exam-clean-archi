@@ -9,7 +9,7 @@ export class Task {
   get dueDate() { return this._dueDate; }
   get closeDate() { return this._closeDate; }
   
-  constructor(
+  private constructor(
     readonly id: string,
     private _description: string,
     private _state: State,
@@ -28,7 +28,7 @@ export class Task {
       [],
       new Date(),
       undefined,
-      dueDate ? new Date(dueDate) : undefined
+      dueDate
     );
   }
 }

@@ -1,4 +1,4 @@
-import {Command} from './Command';
+qimport {Command} from './Command';
 
 export class ErrorCommand implements Command {
     run(): void {
@@ -6,6 +6,6 @@ export class ErrorCommand implements Command {
     }
 
     getContent(): string {
-        return `No keyword found. Please type "yarn ocr help" for more information about ocr usage.`;
+        return `No keyword found. Please type "agenda help" for more information about agenda usage.`;
     }
 }

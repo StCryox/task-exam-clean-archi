@@ -1,5 +1,4 @@
 import {Command} from './Command';
-import {OCR} from "../../domain/OCR";
 import {EntryParser} from "../../domain/EntryParser";
 import {OutputStrategy} from "../../domain/OutputStrategy";
 import {OutputFlag} from "../flags/OutputFlag";
@@ -7,14 +6,14 @@ import {TxtFileExtensionValidator} from "../validator/TxtFileExtensionValidator"
 import {NoOutputStrategy} from "../../domain/NoOutputStrategy";
 
 export class AddAgendaCommand implements Command{
-    private ocr: OCR;
-    private readonly outputStrategy: OutputStrategy;
-    private filePaths: string[];
+  private taskDescription: string;
+  private dueDate: Date;
+  private task: Task;
 
-    constructor(flag: string, filePaths: string[]) {
-        this.outputStrategy = new OutputFlag().getStrategy(flag);
-        this.ocr = new OCR(new EntryParser(), this.outputStrategy);
-        this.filePaths = new TxtFileExtensionValidator().validate("txt", filePaths);
+    constructor(taskDescription: string, dueDate?: Date) {
+        this.taskDescription = taskDescription;
+        this.dueDate = dueDate;
+        this.task = Task.new();
     }
 
     run(): void {
@@ -27,7 +26,7 @@ export class AddAgendaCommand implements Command{
             return;
         }
         for(let i = 0; i < this.filePaths.length; i++){
-            this.ocr.parseFile(this.filePaths[i]).then(() => console.log(this.getContent()));
+            this.task.parseFile(this.filePaths[i]).then(() => console.log(this.getContent()));
         }
     }
 

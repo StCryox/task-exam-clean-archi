@@ -4,7 +4,7 @@ export class HelpCommand implements Command {
     private helpText: string =
     `A task is a description of an activity to be done.
     
-        usage: yarn ocr [command][flag][filePath ...]
+        usage: agenda [command][flag][filePath ...]
     
         Commands:
             agenda add         adds a task
@@ -13,11 +13,11 @@ export class HelpCommand implements Command {
             agenda list        lists all tasks
     
         Flags:
-            -c "hello world" : to add the content 
+            -c "hello world" : to add the content (for add command)
                           
-            -d:2022-03-01 : to add the date 
+            -d:2022-03-01 : to add the date (for add command)
 
-            -s:done : 
+            -s:done : to add the status of the task (for update command)
                           
     `;
 
@@ -26,6 +26,6 @@ export class HelpCommand implements Command {
     }
 
     getContent(): string {
-        return `ocr is an Optical Character Recognition tool in CLI. Type "yarn ocr help" for more information.`;
+        return `A task is a description of an activity to be done. Type "agenda help" for more information.`;
     }
 }
