@@ -14,13 +14,14 @@ const fileHandler = {
 	}
 }
 
+const dateProvider = () => new Date();
 const uuidGenerator = v4;
 const taskRepo = jsonTaskRepo(path.join(__dirname, '..', '.consoleAgenda/tasks.json'), fileHandler);
 const listTasksUsecase = listTasks(taskRepo);
 const findTaskUsecase = findTask(taskRepo);
-const updateTaskUsecase = updateTask(taskRepo);
+const updateTaskUsecase = updateTask(taskRepo, dateProvider);
 const deleteTaskUsecase = deleteTask(taskRepo);
-const addTaskUsecase = addTask(taskRepo, uuidGenerator);
+const addTaskUsecase = addTask(taskRepo, uuidGenerator, dateProvider);
 
 async function main() {
 	console.log(await listTasksUsecase());
@@ -44,4 +45,4 @@ async function main() {
 
 //main().catch(console.error);
 
-cli(listTasksUsecase);
+cli(listTasksUsecase, addTaskUsecase, updateTaskUsecase, deleteTaskUsecase);

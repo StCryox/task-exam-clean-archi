@@ -1,20 +1,20 @@
 import { Task, TaskRepo, isValidState, modifyTask, newTask } from "./task";
 import { AddTaskRequest, DeleteTaskRequest, FindTaskRequest, UpdateTaskRequest } from "./dtos";
-import { IdGenerator } from "./services";
+import { DateProvider, IdGenerator } from "./services";
 
-export const addTask = (taskRepo: TaskRepo, generateId: IdGenerator) => async (input: AddTaskRequest): Promise<void> => {
-	const task = newTask(generateId(), input.description, new Date(), input.dueDate);
+export const addTask = (taskRepo: TaskRepo, generateId: IdGenerator, dateProvider: DateProvider) => async (input: AddTaskRequest): Promise<void> => {
+	const task = newTask(generateId(), input.description, dateProvider(), input.dueDate);
 	await taskRepo.save(task);
 }
 
-export const updateTask = (taskRepo: TaskRepo) => async (input: UpdateTaskRequest): Promise<void> => {
+export const updateTask = (taskRepo: TaskRepo, dateProvider: DateProvider) => async (input: UpdateTaskRequest): Promise<void> => {
 	const task = await _getTaskById(taskRepo, input.id);
 
 	if (input.state !== undefined && !isValidState(input.state)) {
 		throw new Error('Invalid state.');
 	}
 
-	const newTask = modifyTask(task, () => new Date(), input.state, input.dueDate);
+	const newTask = modifyTask(task, dateProvider, input.state, input.dueDate);
 	await taskRepo.save(newTask);
 }
 

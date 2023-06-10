@@ -10,6 +10,6 @@
 		"state": "closed",
 		"description": "Test task",
 		"creationDate": "Tue Jan 01 2019 01:00:00 GMT+0100 (Central European Standard Time)",
-		"closedDate": "Wed Jan 01 2020 01:00:00 GMT+0100 (Central European Standard Time)"
+		"closeDate": "Wed Jan 01 2020 01:00:00 GMT+0100 (Central European Standard Time)"
 	}
 ]

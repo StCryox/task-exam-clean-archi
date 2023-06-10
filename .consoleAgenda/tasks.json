@@ -1,15 +1,1 @@
-[
-  {
-    "id": "1441600d-90f6-43d2-af0d-9ee395bd57bd",
-    "state": "todo",
-    "description": "Test task",
-    "creationDate": "Sat Jun 10 2023 17:43:55 GMT+0200 (Central European Summer Time)"
-  },
-  {
-    "id": "17f129b1-67ea-42a4-a3a6-3e9715d3970c",
-    "state": "closed",
-    "description": "Test task",
-    "creationDate": "Tue Jan 01 2019 01:00:00 GMT+0100 (Central European Standard Time)",
-    "closedDate": "Wed Jan 01 2020 01:00:00 GMT+0100 (Central European Standard Time)"
-  }
-]
+[]
