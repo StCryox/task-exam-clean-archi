@@ -2,6 +2,7 @@ import path from 'path';
 import fs from 'fs/promises';
 import { jsonTaskRepo } from "./json-task-repo";
 import { addTask, deleteTask, findTask, listTasks, updateTask } from './usecases';
+import { v4 } from 'uuid';
 
 const fileHandler = {
 	async read(path: string): Promise<string> {
@@ -12,12 +13,13 @@ const fileHandler = {
 	}
 }
 
+const uuidGenerator = v4;
 const taskRepo = jsonTaskRepo(path.join(__dirname, '..', '.consoleAgenda/tasks.json'), fileHandler);
 const listTasksUsecase = listTasks(taskRepo);
 const findTaskUsecase = findTask(taskRepo);
 const updateTaskUsecase = updateTask(taskRepo);
 const deleteTaskUsecase = deleteTask(taskRepo);
-const addTaskUsecase = addTask(taskRepo);
+const addTaskUsecase = addTask(taskRepo, uuidGenerator);
 
 async function main() {
 	console.log(await listTasksUsecase());

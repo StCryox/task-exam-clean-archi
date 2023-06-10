@@ -5,3 +5,5 @@ export type FileReader = {
 export type FileWriter = {
 	write(path: string, content: string): Promise<void>;
 }
+
+export type IdGenerator = () => string;

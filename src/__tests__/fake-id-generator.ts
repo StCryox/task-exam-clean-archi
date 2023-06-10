@@ -1,0 +1,1 @@
+export const fakeIdGenerator = () => 'fake task id';

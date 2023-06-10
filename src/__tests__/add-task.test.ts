@@ -1,6 +1,7 @@
 
 import { TaskRepo } from '../core';
 import { addTask } from '../usecases';
+import { fakeIdGenerator } from './fake-id-generator';
 import { fakeTaskRepo } from './fake-taks-repo';
 
 type AddTaskUsecase = ReturnType<typeof addTask>;
@@ -8,10 +9,11 @@ type AddTaskUsecase = ReturnType<typeof addTask>;
 describe('Add task', () => {
   let taskRepo: TaskRepo;
 	let usecase: AddTaskUsecase;
+	const generateId = fakeIdGenerator;
 
   beforeEach(() => {
     taskRepo = fakeTaskRepo();
-		usecase = addTask(taskRepo);
+		usecase = addTask(taskRepo, generateId);
   });
   
   it('should resolve void', async () => {

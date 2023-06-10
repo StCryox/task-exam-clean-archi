@@ -1,10 +1,10 @@
-import { v4 } from "uuid";
 import { Task, TaskRepo, isValidState, modifyTask, newTask } from "./core";
 import { AddTaskRequest, DeleteTaskRequest, FindTaskRequest, UpdateTaskRequest } from "./dtos";
+import { IdGenerator } from "./services";
 
 
-export const addTask = (taskRepo: TaskRepo) => async (input: AddTaskRequest): Promise<void> => {
-	const task = newTask(v4(), input.description, new Date(), input.dueDate);
+export const addTask = (taskRepo: TaskRepo, generateId: IdGenerator) => async (input: AddTaskRequest): Promise<void> => {
+	const task = newTask(generateId(), input.description, new Date(), input.dueDate);
 	await taskRepo.save(task);
 }
 
