@@ -10,6 +10,10 @@ export function fakeTaskRepo(): TaskRepo {
 	});
 
 	return {
+		async findAll(): Promise<Task[]> {
+			return Array.from(data.values());
+		},
+
 		async findById(id: string): Promise<Task | null> {
 			return data.get(id) ?? null;
 		},

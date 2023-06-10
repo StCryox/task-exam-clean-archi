@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
 import { Task, TaskRepo, isValidState, modifyTask, newTask } from "./core";
-import { AddTaskRequest, DeleteTaskRequest, UpdateTaskRequest } from "./dtos";
+import { AddTaskRequest, DeleteTaskRequest, FindTaskRequest, UpdateTaskRequest } from "./dtos";
 
 
 export const addTask = (taskRepo: TaskRepo) => async (input: AddTaskRequest): Promise<void> => {
@@ -22,6 +22,14 @@ export const updateTask = (taskRepo: TaskRepo) => async (input: UpdateTaskReques
 export const deleteTask = (taskRepo: TaskRepo) => async (input: DeleteTaskRequest): Promise<void> => {
 	const task = await _getTaskById(taskRepo, input.id);
 	await taskRepo.remove(task);
+}
+
+export const findTask = (taskRepo: TaskRepo) => async (input: FindTaskRequest): Promise<Task> => {
+	return await _getTaskById(taskRepo, input.id);
+}
+
+export const listTasks = (taskRepo: TaskRepo) => async (): Promise<Task[]> => {
+	return await taskRepo.findAll();
 }
 
 

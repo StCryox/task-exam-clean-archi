@@ -62,6 +62,7 @@ export type Task =
 	| ClosedTask;
 
 export type TaskRepo = {
+	findAll(): Promise<Task[]>;
 	findById(id: string): Promise<Task | null>;
 	remove(task: Task): Promise<void>;
 	save(task: Task): Promise<void>;

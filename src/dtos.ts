@@ -12,3 +12,7 @@ export interface UpdateTaskRequest {
 export interface DeleteTaskRequest {
 	id: string;
 }
+
+export interface FindTaskRequest {
+	id: string;
+}
