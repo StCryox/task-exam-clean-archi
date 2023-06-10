@@ -1,6 +1,7 @@
 import { v4 } from "uuid";
-import { TaskRepo, isValidState, modifyTask, newTask } from "./core";
+import { Task, TaskRepo, isValidState, modifyTask, newTask } from "./core";
 import { AddTaskRequest, DeleteTaskRequest, UpdateTaskRequest } from "./dtos";
+
 
 export const addTask = (taskRepo: TaskRepo) => async (input: AddTaskRequest): Promise<void> => {
 	const task = newTask(v4(), input.description, new Date(), input.dueDate);
@@ -8,10 +9,7 @@ export const addTask = (taskRepo: TaskRepo) => async (input: AddTaskRequest): Pr
 }
 
 export const updateTask = (taskRepo: TaskRepo) => async (input: UpdateTaskRequest): Promise<void> => {
-	const task = await taskRepo.findById(input.id);
-	if (task === null) {
-		throw new Error('Task does not exist.');
-	}
+	const task = await _getTaskById(taskRepo, input.id);
 
 	if (input.state !== undefined && !isValidState(input.state)) {
 		throw new Error('Invalid state.');
@@ -22,10 +20,16 @@ export const updateTask = (taskRepo: TaskRepo) => async (input: UpdateTaskReques
 }
 
 export const deleteTask = (taskRepo: TaskRepo) => async (input: DeleteTaskRequest): Promise<void> => {
-	const task = await taskRepo.findById(input.id);
+	const task = await _getTaskById(taskRepo, input.id);
+	await taskRepo.remove(task);
+}
+
+
+
+async function _getTaskById(taskRepo: TaskRepo, id: string): Promise<Task> {
+	const task = await taskRepo.findById(id);
 	if (task === null) {
 		throw new Error('Task does not exist.');
 	}
-
-	await taskRepo.remove(task);
+	return task;
 }
