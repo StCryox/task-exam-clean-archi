@@ -63,6 +63,7 @@ export type Task =
 
 export type TaskRepo = {
 	findById(id: string): Promise<Task | null>;
+	remove(task: Task): Promise<void>;
 	save(task: Task): Promise<void>;
 }
 

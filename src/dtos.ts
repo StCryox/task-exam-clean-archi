@@ -8,3 +8,7 @@ export interface UpdateTaskRequest {
 	dueDate?: Date;
 	state?: string;
 }
+
+export interface DeleteTaskRequest {
+	id: string;
+}

@@ -1,6 +1,6 @@
 import { v4 } from "uuid";
-import { TaskRepo, TaskState, isValidState, modifyTask, newTask } from "./core";
-import { AddTaskRequest, UpdateTaskRequest } from "./dtos";
+import { TaskRepo, isValidState, modifyTask, newTask } from "./core";
+import { AddTaskRequest, DeleteTaskRequest, UpdateTaskRequest } from "./dtos";
 
 export const addTask = (taskRepo: TaskRepo) => async (input: AddTaskRequest): Promise<void> => {
 	const task = newTask(v4(), input.description, new Date(), input.dueDate);
@@ -19,4 +19,13 @@ export const updateTask = (taskRepo: TaskRepo) => async (input: UpdateTaskReques
 
 	const newTask = modifyTask(task, () => new Date(), input.state, input.dueDate);
 	await taskRepo.save(newTask);
+}
+
+export const deleteTask = (taskRepo: TaskRepo) => async (input: DeleteTaskRequest): Promise<void> => {
+	const task = await taskRepo.findById(input.id);
+	if (task === null) {
+		throw new Error('Task does not exist.');
+	}
+
+	await taskRepo.remove(task);
 }

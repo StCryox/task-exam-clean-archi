@@ -14,6 +14,10 @@ export function fakeTaskRepo(): TaskRepo {
 			return data.get(id) ?? null;
 		},
 
+		async remove(task: Task): Promise<void> {
+			data.delete(task.id);
+		},
+
 		async save(task: Task): Promise<void> {
 			data.set(task.id, task);
 		}
