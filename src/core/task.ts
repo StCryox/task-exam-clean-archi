@@ -1,3 +1,5 @@
+import { DateProvider } from "./services";
+
 export type NewTask = {
 	state: 'todo';
 	id: string;
@@ -75,8 +77,6 @@ export type TaskState =
 	| 'done'
 	| 'cancelled'
 	| 'closed';
-
-export type DateProvider = () => Date;
 
 export function newTask(id: string, description: string, now: Date, dueDate?: Date, subTasks?: Task[]): Task {
 	return {

@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs/promises';
-import { jsonTaskRepo } from "./json-task-repo";
-import { addTask, deleteTask, findTask, listTasks, updateTask } from './usecases';
+import { jsonTaskRepo } from "./infrastructure/json-task-repo";
+import { addTask, deleteTask, findTask, listTasks, updateTask } from './core/usecases';
 import { v4 } from 'uuid';
 
 const fileHandler = {

@@ -1,4 +1,4 @@
-import { Task, TaskRepo, isValidState, modifyTask, newTask } from "./core";
+import { Task, TaskRepo, isValidState, modifyTask, newTask } from "./task";
 import { AddTaskRequest, DeleteTaskRequest, FindTaskRequest, UpdateTaskRequest } from "./dtos";
 import { IdGenerator } from "./services";
 

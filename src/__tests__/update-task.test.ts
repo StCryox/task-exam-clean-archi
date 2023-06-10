@@ -1,5 +1,5 @@
-import { TaskRepo } from "../core"
-import { updateTask } from "../usecases";
+import { TaskRepo } from "../core/task"
+import { updateTask } from "../core/usecases";
 import { fakeTaskRepo } from "./fake-taks-repo";
 
 type UpdateTaskUsecase = ReturnType<typeof updateTask>;

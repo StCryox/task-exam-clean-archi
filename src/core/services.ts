@@ -7,3 +7,5 @@ export type FileWriter = {
 }
 
 export type IdGenerator = () => string;
+
+export type DateProvider = () => Date;

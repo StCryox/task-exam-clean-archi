@@ -1,4 +1,4 @@
-import { Task, TaskRepo } from "../core";
+import { Task, TaskRepo } from "../core/task";
 
 export function fakeTaskRepo(): TaskRepo {
 	const data: Map<string, Task> = new Map();

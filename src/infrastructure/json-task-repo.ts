@@ -1,5 +1,5 @@
-import { Task, TaskRepo } from "./core";
-import { FileReader, FileWriter } from "./services";
+import { Task, TaskRepo } from "../core/task";
+import { FileReader, FileWriter } from "../core/services";
 
 export function jsonTaskRepo(filePath: string, fileHandler: FileReader & FileWriter): TaskRepo {
 	return {

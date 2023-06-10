@@ -1,6 +1,6 @@
 
-import { TaskRepo } from '../core';
-import { addTask } from '../usecases';
+import { TaskRepo } from '../core/task';
+import { addTask } from '../core/usecases';
 import { fakeIdGenerator } from './fake-id-generator';
 import { fakeTaskRepo } from './fake-taks-repo';
 
