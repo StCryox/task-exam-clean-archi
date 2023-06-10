@@ -2,13 +2,13 @@
 import { Command } from "commander";
 import figlet from "figlet";
 import { buildAddCommand, buildListCommand, buildRemoveCommand, buildUpdateCommand } from "./commands";
-import { AddTaskUsecase, DeleteTaskUsecase, ListTaskUsecase, UpdateTaskUsecase } from "../../core/usecases";
+import { AddTaskUsecase, RemoveTaskUsecase, ListTaskUsecase, UpdateTaskUsecase } from "../../core/usecases";
 
 export function cli(
 	listTasksUsecase: ListTaskUsecase, 
 	addTaskUsecase: AddTaskUsecase, 
 	updateTaskUsecase: UpdateTaskUsecase, 
-	removeTaskUsecase: DeleteTaskUsecase
+	removeTaskUsecase: RemoveTaskUsecase
 ) : void {
 	const program = new Command("agenda");
 	

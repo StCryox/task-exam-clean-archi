@@ -9,7 +9,7 @@ export interface UpdateTaskRequest {
 	state?: string;
 }
 
-export interface DeleteTaskRequest {
+export interface RemoveTaskRequest {
 	id: string;
 }
 

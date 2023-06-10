@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { AddTaskUsecase, DeleteTaskUsecase, ListTaskUsecase, UpdateTaskUsecase } from "../../core/usecases";
+import { AddTaskUsecase, RemoveTaskUsecase, ListTaskUsecase, UpdateTaskUsecase } from "../../core/usecases";
 
 export function buildListCommand(usecase: ListTaskUsecase): Command {
 	const listCommand = new Command("list");
@@ -56,7 +56,7 @@ export function buildUpdateCommand(usecase: UpdateTaskUsecase): Command {
 	return updateCommand;
 }
 
-export function buildRemoveCommand(usecase: DeleteTaskUsecase): Command {
+export function buildRemoveCommand(usecase: RemoveTaskUsecase): Command {
 	const removeCommand = new Command("remove");
 	removeCommand
 		.summary("remove a task")

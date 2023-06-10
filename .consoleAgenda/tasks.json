@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "state": "todo",
+    "id": "3a50ce0f-ba72-4a72-8ada-565990a3a5a6",
+    "creationDate": "2023-06-10T23:34:44.408Z",
+    "description": "coucou",
+    "dueDate": "2023-06-12T00:00:00.000Z"
+  }
+]

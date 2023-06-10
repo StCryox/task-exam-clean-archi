@@ -1,16 +1,16 @@
 import { TaskRepo } from "../core/task";
-import { DeleteTaskUsecase, deleteTask } from "../core/usecases"
+import { RemoveTaskUsecase, removeTask } from "../core/usecases"
 import { fakeTaskRepo } from "./fake-taks-repo";
 
-describe('Delete Task', () => {
+describe('REmove Task', () => {
 	let taskRepo: TaskRepo;
-	let usecase: DeleteTaskUsecase;
+	let usecase: RemoveTaskUsecase;
 
 	const defaultId = 'task1';
 
 	beforeEach(() => {
 		taskRepo = fakeTaskRepo();
-		usecase = deleteTask(taskRepo);
+		usecase = removeTask(taskRepo);
 	})
 
 	it('should resolve void', async () => {

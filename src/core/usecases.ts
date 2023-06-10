@@ -1,5 +1,5 @@
 import { Task, TaskRepo, isValidState, modifyTask, newTask } from "./task";
-import { AddTaskRequest, DeleteTaskRequest, FindTaskRequest, UpdateTaskRequest } from "./dtos";
+import { AddTaskRequest, RemoveTaskRequest, FindTaskRequest, UpdateTaskRequest } from "./dtos";
 import { DateProvider, IdGenerator } from "./services";
 
 export const addTask = (taskRepo: TaskRepo, generateId: IdGenerator, dateProvider: DateProvider) => async (input: AddTaskRequest): Promise<void> => {
@@ -18,7 +18,7 @@ export const updateTask = (taskRepo: TaskRepo, dateProvider: DateProvider) => as
 	await taskRepo.save(newTask);
 }
 
-export const deleteTask = (taskRepo: TaskRepo) => async (input: DeleteTaskRequest): Promise<void> => {
+export const removeTask = (taskRepo: TaskRepo) => async (input: RemoveTaskRequest): Promise<void> => {
 	const task = await _getTaskById(taskRepo, input.id);
 	await taskRepo.remove(task);
 }
@@ -38,4 +38,4 @@ async function _getTaskById(taskRepo: TaskRepo, id: string): Promise<Task> {
 export type ListTaskUsecase = ReturnType<typeof listTasks>;
 export type AddTaskUsecase = ReturnType<typeof addTask>;
 export type UpdateTaskUsecase = ReturnType<typeof updateTask>;
-export type DeleteTaskUsecase = ReturnType<typeof deleteTask>;
+export type RemoveTaskUsecase = ReturnType<typeof removeTask>;
