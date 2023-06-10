@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs/promises';
 import { jsonTaskRepo } from "./infrastructure/json-task-repo";
-import { addTask, deleteTask, findTask, listTasks, updateTask } from './core/usecases';
+import { ListTaskUsecase, addTask, deleteTask, findTask, listTasks, updateTask } from './core/usecases';
 import { v4 } from 'uuid';
 
 const fileHandler = {
@@ -41,4 +41,30 @@ async function main() {
 	console.log('----------------------');
 }
 
-main().catch(console.error);
+//main().catch(console.error);
+
+import { Command } from "commander"; 
+import figlet from "figlet";
+
+
+let program = new Command("agenda");
+
+
+console.log(figlet.textSync("Agenda"));
+
+function buildListCommand(usecase: ListTaskUsecase): Command {
+	
+	const listCommand = new Command("list");
+	listCommand
+		.action(async () => {
+			console.log(await usecase());
+		})
+
+	return listCommand;
+}
+
+program
+	.version('0.0.1', '-v, --vers', 'output the current version')
+	.description("A task manager in CLI.")
+	.addCommand(buildListCommand(listTasksUsecase))
+	.parse(process.argv);

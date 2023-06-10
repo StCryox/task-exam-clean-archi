@@ -2,7 +2,6 @@ import { Task, TaskRepo, isValidState, modifyTask, newTask } from "./task";
 import { AddTaskRequest, DeleteTaskRequest, FindTaskRequest, UpdateTaskRequest } from "./dtos";
 import { IdGenerator } from "./services";
 
-
 export const addTask = (taskRepo: TaskRepo, generateId: IdGenerator) => async (input: AddTaskRequest): Promise<void> => {
 	const task = newTask(generateId(), input.description, new Date(), input.dueDate);
 	await taskRepo.save(task);
@@ -32,8 +31,6 @@ export const listTasks = (taskRepo: TaskRepo) => async (): Promise<Task[]> => {
 	return await taskRepo.findAll();
 }
 
-
-
 async function _getTaskById(taskRepo: TaskRepo, id: string): Promise<Task> {
 	const task = await taskRepo.findById(id);
 	if (task === null) {
@@ -41,3 +38,9 @@ async function _getTaskById(taskRepo: TaskRepo, id: string): Promise<Task> {
 	}
 	return task;
 }
+
+export type FindTaskUsecase = ReturnType<typeof findTask>;
+export type ListTaskUsecase = ReturnType<typeof listTasks>;
+export type AddTaskUsecase = ReturnType<typeof addTask>;
+export type UpdateTaskUsecase = ReturnType<typeof updateTask>;
+export type DeleteTaskUsecase = ReturnType<typeof deleteTask>;
