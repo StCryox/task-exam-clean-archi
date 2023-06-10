@@ -3,6 +3,7 @@ import fs from 'fs/promises';
 import { jsonTaskRepo } from "./infrastructure/json-task-repo";
 import { ListTaskUsecase, addTask, deleteTask, findTask, listTasks, updateTask } from './core/usecases';
 import { v4 } from 'uuid';
+import { cli } from './infrastructure/cli/Cli';
 
 const fileHandler = {
 	async read(path: string): Promise<string> {
@@ -43,28 +44,4 @@ async function main() {
 
 //main().catch(console.error);
 
-import { Command } from "commander"; 
-import figlet from "figlet";
-
-
-let program = new Command("agenda");
-
-
-console.log(figlet.textSync("Agenda"));
-
-function buildListCommand(usecase: ListTaskUsecase): Command {
-	
-	const listCommand = new Command("list");
-	listCommand
-		.action(async () => {
-			console.log(await usecase());
-		})
-
-	return listCommand;
-}
-
-program
-	.version('0.0.1', '-v, --vers', 'output the current version')
-	.description("A task manager in CLI.")
-	.addCommand(buildListCommand(listTasksUsecase))
-	.parse(process.argv);
+cli(listTasksUsecase);

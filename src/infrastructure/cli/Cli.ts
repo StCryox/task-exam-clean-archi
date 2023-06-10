@@ -1,33 +1,17 @@
-import {CommandFactory} from './commands/CommandFactory';
 
-export default class CLI {
-  private readonly userArgs: string[];
-  private commandFactoryObject: CommandFactory;
-  private commandName: string;
-  private readonly flag: string;
-  private readonly argument: string[];
+import { Command } from "commander";
+import { buildListCommand } from "./commands";
+import figlet from "figlet";
+import { ListTaskUsecase } from "../../core/usecases";
 
-  constructor() {
-    this.userArgs = process.argv.slice(2);
-    this.commandFactoryObject = new CommandFactory();
-    this.commandName = this.userArgs[0];
-    this.flag = this.userArgs[1];
-    this.argument = [];
-  }
+export function cli(listTasksUsecase: ListTaskUsecase) : void {
+	const program = new Command("agenda");
+	
+	console.log(figlet.textSync("Agenda"));
 
-  run(): void {
-    if (this.userArgs.length === 0) {
-      this.commandName = "help";
-    }
-    else {
-      let index: number = 0;
-      for (let i = 2; i < this.userArgs.length; i++) {
-        this.argument[index] = this.userArgs[i];
-        ++index;
-      }
-    }
-
-    const commandObject = this.commandFactoryObject.getCommand(this.commandName, this.flag, this.argument);
-    commandObject.run();
-  }
+	program
+		.version('0.0.1', '-v, --vers', 'output the current version')
+		.description("A task manager in CLI.")
+		.addCommand(buildListCommand(listTasksUsecase))
+		.parse(process.argv);
 }
