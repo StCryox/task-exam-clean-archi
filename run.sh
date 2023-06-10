@@ -1,2 +1,3 @@
 #!/bin/bash
-alias agenda="npm start -- "
+
+npm run build && npm i -g .

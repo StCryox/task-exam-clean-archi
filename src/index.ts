@@ -1,9 +1,11 @@
+#!/usr/bin/env node
+
 import path from 'path';
 import fs from 'fs/promises';
 import { jsonTaskRepo } from "./infrastructure/json-task-repo";
 import { addTask, deleteTask, listTasks, updateTask } from './core/usecases';
 import { v4 } from 'uuid';
-import { cli } from './infrastructure/cli/cli';
+import { cli } from './infrastructure/cli/cli-app';
 
 const fileHandler = {
 	async read(path: string): Promise<string> {

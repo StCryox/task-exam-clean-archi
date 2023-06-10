@@ -3,13 +3,20 @@
   "version": "1.0.0",
   "description": "## Purpose",
   "main": "./bin/index.js",
+	"bin": {
+		"agenda": "./bin/index.js"
+	},
   "scripts": {
-    "start": "ts-node ./src/index.ts",
+    "build": "tsc --project ./tsconfig.build.json",
+    "prestart": "npm run build",
+    "start": "node ./bin/index.js",
+    "start:dev": "ts-node ./src/index.ts",
     "test": "jest"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/figlet": "^1.5.6",
     "@types/jest": "29.5.2",
     "@types/node": "20.2.5",
     "@types/uuid": "^9.0.1",
