@@ -21,7 +21,7 @@ export function buildAddCommand(usecase: AddTaskUsecase): Command {
 	const addCommand = new Command("add");
 	addCommand
 		.summary("Add a new task")
-		.requiredOption("-d, --description <description>", "Task description")
+		.requiredOption("-d, --description <description>", "Task description (required)")
 		.option("-dd, --due-date <dueDate>", "Task due date")
 		.action(async (values) => {
 			try {
@@ -39,7 +39,7 @@ export function buildUpdateCommand(usecase: UpdateTaskUsecase): Command {
 	const updateCommand = new Command("update");
 	updateCommand
 		.summary("Update a task")
-		.argument("<id>", "Task id")
+		.argument("<id>", "Task id (required)")
 		.option("-dd, --due-date <dueDate>", "Task due date")
 		.option("-s, --state <state>", "Task state")
 		.action(async (id, values) => {
@@ -60,7 +60,7 @@ export function buildRemoveCommand(usecase: RemoveTaskUsecase): Command {
 	const removeCommand = new Command("remove");
 	removeCommand
 		.summary("remove a task")
-		.argument("<id>", "Task id")
+		.argument("<id>", "Task id (required)")
 		.action(async (id) => {
 			try {
 				await usecase({id});
